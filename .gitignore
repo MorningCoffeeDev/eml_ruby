@@ -1,0 +1,4 @@
+.env
+coverage
+Gemfile.lock
+spec/vcr_cassettes
