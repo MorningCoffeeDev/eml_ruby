@@ -1,4 +1,5 @@
 .env
 coverage
 Gemfile.lock
+spec/examples.txt
 spec/vcr_cassettes
