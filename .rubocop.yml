@@ -30,6 +30,7 @@ Lint/AmbiguousBlockAssociation:
 
 Metrics/BlockLength:
   Exclude:
+    - eml.gemspec
     - spec/**/*
 
 RSpec/BeforeAfterAll:

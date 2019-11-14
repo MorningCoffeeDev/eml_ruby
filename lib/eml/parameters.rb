@@ -85,8 +85,11 @@ module EML
     end
 
     sig do
-      params(param_name: Symbol, param_value: String, allowed_values: T::Array[String]).
-        void
+      params(
+        param_name: Symbol,
+        param_value: String,
+        allowed_values: T::Array[String]
+      ).void
     end
     def validate_enum(param_name, param_value, allowed_values)
       return if allowed_values.include?(param_value)
