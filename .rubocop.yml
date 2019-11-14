@@ -28,6 +28,10 @@ Lint/AmbiguousBlockAssociation:
   Exclude:
     - spec/**/*
 
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+
 RSpec/BeforeAfterAll:
   Enabled: false
 
@@ -58,6 +62,13 @@ Style/LambdaCall:
 Style/NegatedIf:
   Enabled: false
 
+Style/OptionalArguments:
+  Exclude:
+    - lib/eml/error/**/*
+
+Style/RaiseArgs:
+  Enabled: false
+
 Style/Send:
   Enabled: true
 
@@ -72,3 +83,8 @@ Style/TrailingCommaInArrayLiteral:
 
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: consistent_comma
+
+Style/TrivialAccessors:
+  Exclude:
+    - lib/eml/uk/payload.rb
+    - lib/eml/uk/payload/**/*

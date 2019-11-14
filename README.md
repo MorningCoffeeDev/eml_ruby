@@ -38,7 +38,7 @@ require "eml"
 EML::UK.configure do |config|
   config.username = "username"
   config.password = "password"
-  config.merchant = "merchant_id"
+  config.merchant_group = "merchant_id"
   config.program = "program_id"
 end
 ```

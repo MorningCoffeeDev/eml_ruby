@@ -21,11 +21,17 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency "http", "~> 4.0.0"
+  s.add_dependency "sorbet-runtime"
 
+  s.add_development_dependency "dotenv"
+  s.add_development_dependency "faker"
+  s.add_development_dependency "pry-byebug"
   s.add_development_dependency "rspec", "~> 3.8"
   s.add_development_dependency "rubocop", "~> 0.71"
   s.add_development_dependency "rubocop-performance"
   s.add_development_dependency "rubocop-rspec"
   s.add_development_dependency "simplecov"
+  s.add_development_dependency "sorbet"
   s.add_development_dependency "vcr"
+  s.add_development_dependency "webmock"
 end
