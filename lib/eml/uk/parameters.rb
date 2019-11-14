@@ -40,17 +40,6 @@ module EML
 
       protected
 
-      BOOLEAN_OPTIONS = %w[true false].freeze
-
-      sig { params(param_name: String, param_value: String).void }
-      def validate_boolean(param_name, param_value)
-        return if BOOLEAN_OPTIONS.include?(param_value)
-
-        message = "#{param_name} should be the string 'true' or 'false' but " \
-          "received #{param_value.inspect}"
-        raise ArgumentError, message
-      end
-
       SEARCH_PARAMETER_OPTIONS = %w[
         ActualCardNumber CarrierNumber ClientTrackingId ExternalId
         PaymentTrackingID PrintText

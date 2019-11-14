@@ -19,17 +19,17 @@ module EML
           sig { params(developer: String).returns(String) }
           attr_accessor :developer
 
-          sig { params(is_account_expiry: String).returns(String) }
+          # rubocop:disable Naming/VariableName
+          sig { params(is_account_expiry: T::Boolean).returns(String) }
           def is_account_expiry=(is_account_expiry)
-            validate_boolean("is_account_expiry", is_account_expiry)
-            @Is_account_expiry = is_account_expiry
+            @Is_account_expiry = is_account_expiry.inspect
           end
 
-          sig { params(is_fee_free: String).returns(String) }
+          sig { params(is_fee_free: T::Boolean).returns(String) }
           def is_fee_free=(is_fee_free)
-            validate_boolean("is_fee_free", is_fee_free)
-            @Is_fee_free = is_fee_free
+            @Is_fee_free = is_fee_free.inspect
           end
+          # rubocop:enable Naming/VariableName
 
           sig { params(merchant_group: String).returns(String) }
           attr_accessor :merchant_group

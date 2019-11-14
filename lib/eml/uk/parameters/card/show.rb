@@ -72,16 +72,14 @@ module EML
             @fields = fields.join(",")
           end
 
-          sig { params(log_balance_inquiry: String).returns(String) }
+          sig { params(log_balance_inquiry: T::Boolean).returns(String) }
           def log_balance_inquiry=(log_balance_inquiry)
-            validate_boolean("log_balance_inquiry", log_balance_inquiry)
-            @log_balance_inquiry = log_balance_inquiry
+            @log_balance_inquiry = log_balance_inquiry.inspect
           end
 
-          sig { params(only_valid_status: String).returns(String) }
+          sig { params(only_valid_status: T::Boolean).returns(String) }
           def only_valid_status=(only_valid_status)
-            validate_boolean("only_valid_status", only_valid_status)
-            @only_valid_status = only_valid_status
+            @only_valid_status = only_valid_status.inspect
           end
 
           sig { params(program: String).returns(String) }
