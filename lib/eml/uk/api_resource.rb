@@ -54,8 +54,8 @@ module EML
       def credentials
         config = EML::UK.config
         {
-          username: config.username,
-          password: config.password,
+          username: config.rest_username,
+          password: config.rest_password,
         }
       end
 
