@@ -13,7 +13,7 @@ You don't need this source code unless you want to modify the gem. If you just
 want to use the package, just include the following in your Gemfile:
 
 ```sh
-gem "eml", github: "MorningCoffeeDev/eml_ruby"
+gem "eml"
 ```
 
 If you are debugging or developing this gem and wish to use it within the
@@ -36,10 +36,13 @@ with your supplied credentials.
 require "eml"
 
 EML::UK.configure do |config|
-  config.username = "username"
-  config.password = "password"
+  config.rest_username = "username"
+  config.rest_password = "password"
   config.merchant_group = "merchant_id"
   config.program = "program_id"
+  config.search_parameter = "program_id"
+  config.tns_username = "username"
+  config.tns_password = "password"
 end
 ```
 

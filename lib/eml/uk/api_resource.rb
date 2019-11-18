@@ -52,11 +52,13 @@ module EML
 
       sig { returns(T::Hash[Symbol, T.nilable(String)]) }
       def credentials
-        config = EML::UK.config
-        {
-          username: config.username,
-          password: config.password,
-        }
+        @credentials ||= begin
+          config = EML::UK.config
+          {
+            username: config.rest_username,
+            password: config.rest_password,
+          }
+        end
       end
 
       sig { returns(String) }
@@ -70,14 +72,13 @@ module EML
 
       sig { returns(T::Hash[String, String]) }
       def headers
-        @headers ||= { "Authorization" => "Basic #{base64_credentials}" }
-      end
-
-      sig { returns(String) }
-      def base64_credentials
-        username = credentials[:username]
-        password = credentials[:password]
-        Base64.encode64("#{username}:#{password}").tr("\n", "")
+        @headers ||= {
+          "Authorization" => ::EML::BasicAuth::Generate.(
+            credentials[:username],
+            credentials[:password],
+            prefix: "Basic "
+          ),
+        }
       end
 
       sig { params(endpoint: String).returns(T.class_of(EML::Response)) }

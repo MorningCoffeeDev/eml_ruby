@@ -9,8 +9,8 @@ RSpec.describe EML::UK::APIResource do
     context "when the credentials are wrong" do
       before do
         EML::UK.configure do |config|
-          config.username = "username"
-          config.password = "password"
+          config.rest_username = "username"
+          config.rest_password = "password"
         end
 
         allow(described_class).to receive(:const_get).with(:ENDPOINT_BASE).
@@ -21,8 +21,8 @@ RSpec.describe EML::UK::APIResource do
 
       after do
         EML::UK.configure do |config|
-          config.username = ENV["UK_REST_API_USERNAME"]
-          config.password = ENV["UK_REST_API_PASSWORD"]
+          config.rest_username = ENV["UK_REST_API_USERNAME"]
+          config.rest_password = ENV["UK_REST_API_PASSWORD"]
         end
       end
 

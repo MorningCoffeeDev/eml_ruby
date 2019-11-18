@@ -21,19 +21,25 @@ module EML
       extend T::Sig
 
       sig { returns(String) }
-      attr_accessor :username
-
-      sig { returns(String) }
-      attr_accessor :password
-
-      sig { returns(String) }
       attr_accessor :merchant_group
 
       sig { returns(String) }
       attr_accessor :program
 
       sig { returns(String) }
+      attr_accessor :rest_username
+
+      sig { returns(String) }
+      attr_accessor :rest_password
+
+      sig { returns(String) }
       attr_accessor :search_parameter
+
+      sig { returns(String) }
+      attr_accessor :tns_username
+
+      sig { returns(String) }
+      attr_accessor :tns_password
 
       private
 

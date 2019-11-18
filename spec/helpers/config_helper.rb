@@ -9,11 +9,13 @@ module EML
       sig { void }
       def configure_uk
         EML::UK.configure do |config|
-          config.username = ENV["UK_REST_API_USERNAME"]
-          config.password = ENV["UK_REST_API_PASSWORD"]
           config.merchant_group = ENV["UK_REST_API_MERCHANT_GROUP"]
           config.program = ENV["UK_REST_API_PROGRAM"]
+          config.rest_username = ENV["UK_REST_API_USERNAME"]
+          config.rest_password = ENV["UK_REST_API_PASSWORD"]
           config.search_parameter = ENV["UK_REST_API_SEARCH_PARAMETER"]
+          config.tns_username = "username"
+          config.tns_password = "password"
         end
       end
     end
