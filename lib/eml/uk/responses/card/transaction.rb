@@ -10,11 +10,11 @@ module EML
 
           field :count
 
-          sig { returns(T::Array[::EML::UK::Model::Transaction]) }
+          sig { returns(T::Array[::EML::UK::Models::Transaction]) }
           def transactions
             @transactions ||= body["transactions"].
               each_with_object([]) do |transaction, array|
-                array << ::EML::UK::Model::Transaction.new(transaction)
+                array << ::EML::UK::Models::Transaction.new(transaction)
               end
           end
         end

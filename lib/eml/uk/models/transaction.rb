@@ -3,9 +3,11 @@
 
 module EML
   module UK
-    class Model
-      class Transaction
-        FIELDS = %w[
+    module Models
+      class Transaction < ::EML::Model
+        extend T::Sig
+
+        fields(%w[
           acceptor_code
           acceptor_location
           activity
@@ -29,22 +31,13 @@ module EML
           transaction_amount
           transaction_currency
           user
-        ].freeze
-        private_constant :FIELDS
+        ])
 
-        FIELDS.each { |field| __send__(:attr_reader, :"#{field}") }
+        protected
 
-        def initialize(response)
-          FIELDS.each do |field|
-            value = field_value(field, response[field])
-            instance_variable_set(:"@#{field}", value)
-          end
-        end
-
-        private
-
+        sig { params(field: String, raw_value: T.untyped).returns(T.untyped) }
         def field_value(field, raw_value)
-          if field.include?("time")
+          if field.match?(/date|time/)
             EML::UK::ParseDate.(raw_value)
           else
             raw_value

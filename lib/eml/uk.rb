@@ -12,7 +12,9 @@ require "eml/uk/config"
 require "eml/uk/lib/endpoint_class"
 require "eml/uk/lib/parse_date"
 
-require "eml/uk/model/transaction"
+require "eml/uk/models/tns_card"
+require "eml/uk/models/tns_transaction"
+require "eml/uk/models/transaction"
 
 require "eml/uk/parameters"
 require "eml/uk/parameters/agreement/show"
@@ -47,3 +49,6 @@ require "eml/uk/responses/agreement/show"
 require "eml/uk/responses/card/reload"
 require "eml/uk/responses/card/show"
 require "eml/uk/responses/card/transaction"
+
+require "eml/uk/tns/process_request"
+require "eml/uk/tns/response"

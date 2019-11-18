@@ -14,12 +14,3 @@ module EML
     end
   end
 end
-
-require "eml/error/rest"
-require "eml/error/rest/authentication"
-require "eml/error/rest/bad_request"
-require "eml/error/rest/daily_funding_limit"
-require "eml/error/rest/forbidden"
-require "eml/error/rest/internal_server"
-require "eml/error/rest/not_found"
-require "eml/error/rest/unprocessable_entity"
