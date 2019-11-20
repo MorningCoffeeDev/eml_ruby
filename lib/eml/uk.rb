@@ -12,8 +12,9 @@ require "eml/uk/config"
 require "eml/uk/lib/endpoint_class"
 require "eml/uk/lib/parse_date"
 
-require "eml/uk/models/tns_card"
-require "eml/uk/models/tns_transaction"
+require "eml/uk/models/tns/card"
+require "eml/uk/models/tns/message"
+require "eml/uk/models/tns/transaction"
 require "eml/uk/models/transaction"
 
 require "eml/uk/parameters"

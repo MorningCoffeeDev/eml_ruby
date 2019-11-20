@@ -11,7 +11,7 @@ module EML
           params(
             auth_token: String,
             parameters: T::Hash[Symbol, T.untyped]
-          ).returns(EML::UK::TNS::Response)
+          ).returns(EML::UK::Models::TNS::Message)
         end
         def self.call(auth_token, parameters)
           new(auth_token, parameters).call
@@ -28,10 +28,10 @@ module EML
           @parameters = parameters
         end
 
-        sig { returns(EML::UK::TNS::Response) }
+        sig { returns(EML::UK::Models::TNS::Message) }
         def call
           verify_auth_token
-          EML::UK::TNS::Response.new(@parameters)
+          EML::UK::Models::TNS::Message.new(@parameters)
         end
 
         private

@@ -13,7 +13,7 @@ module EML
         def initialize(response)
           @transactions = response[:Transactions].
             each_with_object([]) do |raw_transaction, transactions|
-              transactions << EML::UK::Models::TNSTransaction.
+              transactions << EML::UK::Models::TNS::Transaction.
                 new(raw_transaction)
             end
         end
