@@ -26,7 +26,7 @@ module EML
         end
         def convert(resource_class, endpoint, payload)
           endpoint_class = EML::UK::EndpointClass.(
-            class_type: self::ENDPOINT_CLASS_TYPE,
+            class_type: const_get(:ENDPOINT_CLASS_TYPE),
             resource_class: resource_class,
             endpoint: endpoint
           )

@@ -2,11 +2,11 @@
 # frozen_string_literal: true
 
 RSpec.describe EML::BasicAuth::Verify do
+  subject { described_class.(token, username, password) }
+
   let(:expected_token) { "dXNlcm5hbWU6cGFzc3dvcmQ=" }
   let(:username) { "username" }
   let(:password) { "password" }
-
-  subject { described_class.(token, username, password) }
 
   context "when the token is valid for the username and password" do
     let(:token) { expected_token }

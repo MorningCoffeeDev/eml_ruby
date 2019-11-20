@@ -8,7 +8,7 @@ module EML
 
       sig do
         params(
-          auth_token: String,
+          auth_token: T.nilable(String),
           username: String,
           password: String
         ).returns(T::Boolean)
@@ -19,15 +19,15 @@ module EML
 
       sig do
         params(
-          auth_token: String,
+          auth_token: T.nilable(String),
           username: String,
           password: String
         ).void
       end
       def initialize(auth_token, username, password)
-        @auth_token = auth_token
-        @username = username
-        @password = password
+        @auth_token = T.let(auth_token || "", String)
+        @username = T.let(username, String)
+        @password = T.let(password, String)
       end
 
       sig { returns(T::Boolean) }
@@ -40,6 +40,7 @@ module EML
 
       private
 
+      sig { returns(String) }
       def parse_auth_token
         @auth_token.sub(/^[^\s]+\s/, "")
       end

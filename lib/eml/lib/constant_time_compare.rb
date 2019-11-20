@@ -12,8 +12,8 @@ module EML
 
     sig { params(comparison: String, expected: String).void }
     def initialize(comparison, expected)
-      @comparison = comparison
-      @expected = expected
+      @comparison = T.let(comparison, String)
+      @expected = T.let(expected, String)
     end
 
     sig { returns(T::Boolean) }
@@ -22,8 +22,8 @@ module EML
 
       result = 0
 
-      Hash[[@comparison.bytes, @expected.bytes].transpose].
-        each { |x, y| result |= x ^ y }
+      transposed = [@comparison.bytes, @expected.bytes].transpose
+      Hash[transposed].each { |x, y| result |= x ^ y }
 
       result.zero?
     end

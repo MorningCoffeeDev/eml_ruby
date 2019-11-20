@@ -38,7 +38,7 @@ module EML
         sig { params(field: String, raw_value: T.untyped).returns(T.untyped) }
         def field_value(field, raw_value)
           if field.match?(/date|time/)
-            EML::UK::ParseDate.(raw_value)
+            ::EML::UK::ParseDate.(raw_value)
           else
             raw_value
           end

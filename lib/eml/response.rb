@@ -84,7 +84,7 @@ module EML
 
     sig { returns(T.nilable(EML::RESTError)) }
     def check_for_incorrectly_categorised_errors
-      if error.match?(/is not in (the proper|a valid) status/)
+      if error&.match?(/is not in (the proper|a valid) status/)
         raise T.unsafe(EML::REST::UnprocessableEntityError).new(error, self)
       end
     end

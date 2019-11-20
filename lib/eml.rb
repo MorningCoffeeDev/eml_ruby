@@ -30,6 +30,7 @@ require "eml/lib/basic_auth/generate"
 require "eml/lib/basic_auth/verify"
 require "eml/lib/constant_time_compare"
 require "eml/lib/endpoint_class"
+require "eml/lib/model_hash"
 
 require "eml/model"
 require "eml/parameters"
