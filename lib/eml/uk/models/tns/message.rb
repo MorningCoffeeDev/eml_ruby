@@ -10,9 +10,10 @@ module EML
 
           fields("Transactions" => :transactions)
 
-          sig { params(raw_values: T::Hash[Symbol, T.untyped]).void }
+          sig { params(raw_values: T::Hash[String, T.untyped]).void }
           def initialize(raw_values)
-            @transactions = raw_values[:Transactions].
+            raw_transactions = raw_values.fetch("Transactions", [])
+            @transactions = raw_transactions.
               each_with_object([]) do |raw_transaction, transactions|
                 transactions << EML::UK::Models::TNS::Transaction.
                   new(raw_transaction)

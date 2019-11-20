@@ -9,8 +9,8 @@ module EML
 
         sig do
           params(
-            auth_token: String,
-            parameters: T::Hash[Symbol, T.untyped]
+            auth_token: T.nilable(String),
+            parameters: T::Hash[String, T.untyped]
           ).returns(EML::UK::Models::TNS::Message)
         end
         def self.call(auth_token, parameters)
@@ -19,13 +19,13 @@ module EML
 
         sig do
           params(
-            auth_token: String,
-            parameters: T::Hash[Symbol, T.untyped]
+            auth_token: T.nilable(String),
+            parameters: T::Hash[String, T.untyped]
           ).void
         end
         def initialize(auth_token, parameters)
-          @auth_token = T.let(auth_token, String)
-          @parameters = T.let(parameters, T::Hash[Symbol, T.untyped])
+          @auth_token = T.let(auth_token || "", String)
+          @parameters = T.let(parameters, T::Hash[String, T.untyped])
           @credentials = T.let(nil, T.nilable(T::Hash[Symbol, T.untyped]))
         end
 

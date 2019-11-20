@@ -38,8 +38,8 @@ module EML
       )
 
       RESPONSE = T.let(
-        { Transactions: [TRANSACTION] }.freeze,
-        T::Hash[Symbol, T::Array[T::Hash[String, T.untyped]]]
+        { "Transactions" => [TRANSACTION] }.freeze,
+        T::Hash[String, T::Array[T::Hash[String, T.untyped]]]
       )
     end
   end
