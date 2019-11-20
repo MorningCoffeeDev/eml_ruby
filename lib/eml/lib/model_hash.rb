@@ -12,8 +12,8 @@ module EML
 
     sig { params(model: EML::Model).void }
     def initialize(model)
-      @model = model
-      @hash = {}
+      @model = T.let(model, EML::Model)
+      @hash = T.let({}, T::Hash[Symbol, T.untyped])
     end
 
     sig { returns(T::Hash[Symbol, T.untyped]) }
@@ -44,7 +44,7 @@ module EML
       end
     end
 
-    sig { params(value: Array).returns(Array) }
+    sig { params(value: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
     def array_value(value)
       value.each_with_object([]) do |item, array|
         array << stored_value(item)

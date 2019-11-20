@@ -16,27 +16,27 @@ module EML
     def initialize(message = nil, response = nil)
       super(message)
 
-      @response = T.let(response, EML::Response)
+      @response = T.let(response, T.nilable(EML::Response))
     end
 
-    sig { returns(String) }
+    sig { returns(T.nilable(String)) }
     def http_body
-      @response.error || @response.body.to_s
+      @response&.error || @response&.body&.to_s
     end
 
-    sig { returns(T::Hash[Symbol, String]) }
+    sig { returns(T.nilable(T::Hash[Symbol, String])) }
     def http_headers
-      @response.headers
+      @response&.headers
     end
 
-    sig { returns(Integer) }
+    sig { returns(T.nilable(Integer)) }
     def http_status
-      @response.status
+      @response&.http_status
     end
 
-    sig { returns(String) }
+    sig { returns(T.nilable(String)) }
     def url
-      @response.url.to_s
+      @response&.url&.to_s
     end
   end
 end

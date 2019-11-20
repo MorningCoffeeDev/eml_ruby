@@ -4,6 +4,8 @@ require:
 
 AllCops:
   TargetRubyVersion: 2.6.4
+  Exclude:
+    - bin/**/*
 
 Layout/AlignParameters:
   EnforcedStyle: with_fixed_indentation

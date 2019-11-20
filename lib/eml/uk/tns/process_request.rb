@@ -24,8 +24,9 @@ module EML
           ).void
         end
         def initialize(auth_token, parameters)
-          @auth_token = auth_token
-          @parameters = parameters
+          @auth_token = T.let(auth_token, String)
+          @parameters = T.let(parameters, T::Hash[Symbol, T.untyped])
+          @credentials = T.let(nil, T.nilable(T::Hash[Symbol, T.untyped]))
         end
 
         sig { returns(EML::UK::Models::TNS::Message) }

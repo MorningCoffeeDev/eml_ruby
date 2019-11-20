@@ -24,7 +24,7 @@ module EML
           params: T::Hash[Symbol, T.untyped]
         ).returns(T.untyped)
       end
-      def self.convert(resource_class, endpoint, params)
+      def convert(resource_class, endpoint, params)
         endpoint_class = EML::EndpointClass.(
           class_type: ENDPOINT_CLASS_TYPE, resource_class: resource_class,
           endpoint: endpoint
@@ -112,6 +112,7 @@ module EML
 
     private
 
+    sig { params(array: T::Array[String]).returns(String) }
     def array_as_string(array)
       array.dup.tap { |vals| vals[-1] = "or #{vals.last}" }.join(", ")
     end

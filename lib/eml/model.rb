@@ -23,7 +23,7 @@ module EML
 
     sig { void }
     def self.enumerate_fields
-      self::FIELDS.each do |response_name, local_name|
+      const_get(:FIELDS).each do |response_name, local_name|
         local_name ||= response_name.to_sym
         yield(response_name, local_name)
       end

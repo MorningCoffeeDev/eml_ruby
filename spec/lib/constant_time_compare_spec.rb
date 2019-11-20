@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 RSpec.describe EML::ConstantTimeCompare do
-  subject { described_class.(expected, comparison) }
+  subject(:compare) { described_class.(expected, comparison) }
 
   let(:expected) { "expected" }
 
@@ -29,13 +29,13 @@ RSpec.describe EML::ConstantTimeCompare do
       let(:expected) { 1 }
       let(:comparison) { "expected" }
 
-      specify { expect { subject }.to raise_error TypeError }
+      specify { expect { compare }.to raise_error TypeError }
     end
 
     context "when the comparison value is an integer" do
       let(:comparison) { 1 }
 
-      specify { expect { subject }.to raise_error TypeError }
+      specify { expect { compare }.to raise_error TypeError }
     end
   end
 end

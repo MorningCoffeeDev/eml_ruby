@@ -10,6 +10,16 @@ module EML
 
           field :count
 
+          sig { params(response: HTTP::Response, id: T.nilable(String)).void }
+          def initialize(response, id: nil)
+            super
+
+            @transactions = T.let(
+              nil,
+              T.nilable(T::Array[::EML::UK::Models::Transaction])
+            )
+          end
+
           sig { returns(T::Array[::EML::UK::Models::Transaction]) }
           def transactions
             @transactions ||= body["transactions"].

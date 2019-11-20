@@ -27,7 +27,7 @@ module EML
         end
         def convert(resource_class, endpoint, params)
           endpoint_class = EML::UK::EndpointClass.(
-            class_type: self::ENDPOINT_CLASS_TYPE,
+            class_type: const_get(:ENDPOINT_CLASS_TYPE),
             resource_class: resource_class, endpoint: endpoint
           )
 
@@ -40,10 +40,13 @@ module EML
 
       protected
 
-      SEARCH_PARAMETER_OPTIONS = %w[
-        ActualCardNumber CarrierNumber ClientTrackingId ExternalId
-        PaymentTrackingID PrintText
-      ].freeze
+      SEARCH_PARAMETER_OPTIONS = T.let(
+        %w[
+          ActualCardNumber CarrierNumber ClientTrackingId ExternalId
+          PaymentTrackingID PrintText
+        ].freeze,
+        T::Array[String]
+      )
 
       sig { params(value: String).void }
       def validate_search_parameter(value)

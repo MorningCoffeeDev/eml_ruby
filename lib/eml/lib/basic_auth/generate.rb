@@ -16,7 +16,7 @@ module EML
         ).returns(String)
       end
       def self.call(username, password, prefix: "")
-        new(username, password, prefix).call
+        new(username, password, prefix: prefix).call
       end
 
       sig do
@@ -26,10 +26,10 @@ module EML
           prefix: String
         ).void
       end
-      def initialize(username, password, prefix)
-        @username = username
-        @password = password
-        @prefix = prefix
+      def initialize(username, password, prefix: "")
+        @username = T.let(username, String)
+        @password = T.let(password, String)
+        @prefix = T.let(prefix, String)
       end
 
       sig { returns(String) }

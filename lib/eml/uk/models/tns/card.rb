@@ -13,7 +13,7 @@ module EML
             "Currency" => :currency,
             "ExternalId" => :externalId,
             "Program" => :program,
-            "MerchantGroup" => :merchantGroup,
+            "MerchantGroup" => :merchantGroup
           )
         end
       end

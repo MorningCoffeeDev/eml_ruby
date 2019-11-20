@@ -15,6 +15,7 @@ module EML
       def initialize(id: nil)
         @id = T.let(id, T.nilable(String))
         @headers = T.let(nil, T.nilable(T::Hash[String, String]))
+        @credentials = T.let(nil, T.nilable(T::Hash[Symbol, String]))
       end
 
       sig do
@@ -50,13 +51,13 @@ module EML
 
       private
 
-      sig { returns(T::Hash[Symbol, T.nilable(String)]) }
+      sig { returns(T::Hash[Symbol, String]) }
       def credentials
         @credentials ||= begin
           config = EML::UK.config
           {
-            username: config.rest_username,
-            password: config.rest_password,
+            username: config.rest_username || "",
+            password: config.rest_password || "",
           }
         end
       end
@@ -74,8 +75,8 @@ module EML
       def headers
         @headers ||= {
           "Authorization" => ::EML::BasicAuth::Generate.(
-            credentials[:username],
-            credentials[:password],
+            T.must(credentials[:username]),
+            T.must(credentials[:password]),
             prefix: "Basic "
           ),
         }
