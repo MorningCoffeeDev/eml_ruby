@@ -35,7 +35,9 @@ module EML
 
     sig { params(value: T.untyped).returns(T.untyped) }
     def stored_value(value)
-      if value.is_a?(Array)
+      if value.nil?
+        nil
+      elsif value.is_a?(Array)
         array_value(value)
       elsif value.respond_to?(:to_h)
         value.to_h
