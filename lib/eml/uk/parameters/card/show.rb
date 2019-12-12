@@ -9,7 +9,7 @@ module EML
           REQUIRED_CONFIG = %i[program].freeze
           OPTIONAL_CONFIG = %i[search_parameter].freeze
 
-          FIELDS_OPTIONS = %w[
+          FIELDS_OPTIONS = %i[
             account_expiration_date
             activating_merchant_group_name
             activating_merchant_group_uniquetag
@@ -61,9 +61,9 @@ module EML
             unload_to_ach_fee
           ].freeze
 
-          sig { params(fields: T::Array[String]).returns(String) }
+          sig { params(fields: T::Array[Symbol]).returns(String) }
           def fields=(fields)
-            unless fields.first == "all"
+            unless fields.first == :all
               fields.each do |field|
                 validate_array("fields", field, FIELDS_OPTIONS)
               end
