@@ -45,7 +45,7 @@ module EML
       end
 
       def rails
-        return :production if Rails.env.prod?
+        return :production if Rails.env.production?
 
         :test
       end
