@@ -11,7 +11,7 @@ module EML
 
           private
 
-          FIELDS_OPTIONS = %w[
+          FIELDS_OPTIONS = %i[
             activity
             amount
             authorization_request_id
@@ -30,11 +30,11 @@ module EML
             user
           ].freeze
 
-          sig { params(fields: T::Array[String]).returns(String) }
+          sig { params(fields: T::Array[Symbol]).returns(String) }
           def fields=(fields)
-            unless fields.first == "all"
+            unless fields.first == :all
               fields.each do |field|
-                validate_array("fields", field, FIELDS_OPTIONS)
+                validate_array(:fields, field, FIELDS_OPTIONS)
               end
             end
 

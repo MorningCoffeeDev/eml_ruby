@@ -65,7 +65,7 @@ module EML
           def fields=(fields)
             unless fields.first == :all
               fields.each do |field|
-                validate_array("fields", field, FIELDS_OPTIONS)
+                validate_array(:fields, field, FIELDS_OPTIONS)
               end
             end
 

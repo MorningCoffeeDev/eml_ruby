@@ -71,8 +71,8 @@ module EML
 
     sig do
       params(
-        param_name: String,
-        param_value: String,
+        param_name: Symbol,
+        param_value: Symbol,
         allowed_values: T::Array[String]
       ).void
     end
