@@ -73,7 +73,7 @@ module EML
       params(
         param_name: Symbol,
         param_value: Symbol,
-        allowed_values: T::Array[String]
+        allowed_values: T::Array[Symbol]
       ).void
     end
     def validate_array(param_name, param_value, allowed_values)
@@ -82,20 +82,6 @@ module EML
       error_message = "#{param_name} can include any of " \
         "#{array_as_string(allowed_values)} but included #{param_value}"
       raise ArgumentError, error_message
-    end
-
-    sig do
-      params(
-        param_name: Symbol,
-        param_value: String,
-        allowed_values: T::Array[String]
-      ).void
-    end
-    def validate_enum(param_name, param_value, allowed_values)
-      return if allowed_values.include?(param_value)
-
-      value_message = array_as_string(allowed_values)
-      raise(ArgumentError, "#{param_name} must be one of #{value_message}")
     end
 
     sig do

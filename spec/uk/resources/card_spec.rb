@@ -143,7 +143,7 @@ RSpec.describe EML::UK::Card do
     let(:payload) do
       {
         note: "Test suite",
-        reason: "Stolen",
+        reason: :Stolen,
       }
     end
 
@@ -155,7 +155,7 @@ RSpec.describe EML::UK::Card do
     end
 
     context "when the reason is invalid" do
-      before { payload[:reason] = "InvalidReason" }
+      before { payload[:reason] = :InvalidReason }
 
       it "raises an Argument error" do
         expect { described_class.lock(id: card_id, payload: payload) }.

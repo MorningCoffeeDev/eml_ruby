@@ -17,12 +17,12 @@ module EML
           sig { params(note: String).returns(String) }
           attr_accessor :note
 
-          REASONS = %w[
+          REASONS = %i[
             Damaged DataBreach Lost Miscellaneous OfficeError
             PastAccountExpirationDate Stolen UnclaimedProperty
           ].freeze
 
-          sig { params(reason: String).void }
+          sig { params(reason: Symbol).void }
           def reason=(reason)
             validate_enum(:reason, reason, REASONS)
             @reason = reason

@@ -71,7 +71,7 @@ module EML
     protected
 
     sig do
-      params(param_name: Symbol, param_value: String, values: T::Array[String]).
+      params(param_name: Symbol, param_value: Symbol, values: T::Array[Symbol]).
         void
     end
     def validate_enum(param_name, param_value, values)
