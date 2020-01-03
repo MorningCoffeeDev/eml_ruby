@@ -43,8 +43,9 @@ module EML
             @city = city
           end
 
-          sig { params(dob: String).void }
+          sig { params(dob: T.any(Date, String, Time)).void }
           def dob=(dob)
+            dob = dob.strftime("%m%d%Y") if dob.respond_to?(:strftime)
             validate_dob(dob)
             @dob = dob
           end

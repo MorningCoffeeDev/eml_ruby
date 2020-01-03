@@ -65,10 +65,29 @@ RSpec.describe EML::UK::Card do
     context "when the DOB is in the wrong format" do
       it "raises an ArgumentError" do
         payload[:dob] = "31012000"
-        cassette = "uk/card/register/dob"
-        EML::Helpers::VCR.with_cassette(cassette) do
+        EML::Helpers::VCR.with_cassette("uk/card/register/dob_string") do
           expect { described_class.register(id: card_id, payload: payload) }.
             to raise_error(ArgumentError)
+        end
+      end
+    end
+
+    context "when the DOB is a Date object" do
+      it "registers the card" do
+        payload[:dob] = Date.parse("2000-01-31")
+        EML::Helpers::VCR.with_cassette("uk/card/register/dob_date") do
+          response = described_class.register(id: card_id, payload: payload)
+          expect(response.success?).to be true
+        end
+      end
+    end
+
+    context "when the DOB is a Time object" do
+      it "registers the card" do
+        payload[:dob] = Time.parse("2000-01-31")
+        EML::Helpers::VCR.with_cassette("uk/card/register/dob_date") do
+          response = described_class.register(id: card_id, payload: payload)
+          expect(response.success?).to be true
         end
       end
     end
