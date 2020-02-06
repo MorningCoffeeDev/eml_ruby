@@ -12,6 +12,9 @@ module EML
       def initialize(params)
         params = merge_required_config(params)
         params = merge_optional_config(params)
+
+        @search_parameter = T.let(nil, T.nilable(String))
+
         super
       end
 

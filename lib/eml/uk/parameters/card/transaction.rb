@@ -1,4 +1,4 @@
-# typed: true
+# typed: strict
 # frozen_string_literal: true
 
 module EML
@@ -6,12 +6,12 @@ module EML
     class Parameters
       module Card
         class Transaction < ::EML::UK::Parameters
-          REQUIRED_CONFIG = %i[program].freeze
-          OPTIONAL_CONFIG = %i[search_parameter].freeze
+          REQUIRED_CONFIG = T.let(%i[program].freeze, T::Array[Symbol])
+          OPTIONAL_CONFIG = T.let(%i[search_parameter].freeze, T::Array[Symbol])
 
           private
 
-          FIELDS_OPTIONS = %i[
+          FIELDS_OPTIONS = T.let(%i[
             activity
             amount
             authorization_request_id
@@ -28,7 +28,14 @@ module EML
             system_transaction_id
             timestamp
             user
-          ].freeze
+          ].freeze, T::Array[Symbol])
+
+          sig { params(params: T::Hash[Symbol, T.untyped]).void }
+          def initialize(params)
+            super
+
+            @fields = T.let(nil, T.nilable(String))
+          end
 
           sig { params(fields: T::Array[Symbol]).returns(String) }
           def fields=(fields)
@@ -41,10 +48,10 @@ module EML
             @fields = fields.join(",")
           end
 
-          sig { params(filter: String).returns(String) }
+          sig { returns(T.nilable(String)) }
           attr_accessor :filter
 
-          sig { params(program: String).returns(String) }
+          sig { returns(T.nilable(String)) }
           attr_accessor :program
 
           sig { params(search_parameter: String).returns(String) }

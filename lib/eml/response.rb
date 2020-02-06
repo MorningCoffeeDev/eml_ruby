@@ -9,7 +9,7 @@ module EML
     def self.field(field_name)
       define_method(field_name) do
         string_name = field_name.to_s
-        body[string_name]
+        T.unsafe(self).body[string_name]
       end
     end
 

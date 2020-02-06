@@ -20,7 +20,7 @@ module EML
         sig { params(field_name: Symbol).void }
         def date_field(field_name)
           define_method(field_name) do
-            ::EML::UK::ParseDate.(body[field_name.to_s])
+            ::EML::UK::ParseDate.(T.unsafe(self).body[field_name.to_s])
           end
         end
       end

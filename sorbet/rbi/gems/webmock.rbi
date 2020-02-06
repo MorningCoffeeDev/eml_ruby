@@ -364,7 +364,6 @@ class WebMock::Config
   def query_values_notation; end
   def query_values_notation=(arg0); end
   def self.allocate; end
-  def self.instance; end
   def self.new(*arg0); end
   def show_body_diff; end
   def show_body_diff=(arg0); end
@@ -386,7 +385,6 @@ class WebMock::RequestRegistry
   def requested_signatures=(arg0); end
   def reset!; end
   def self.allocate; end
-  def self.instance; end
   def self.new(*arg0); end
   def times_executed(request_pattern); end
   def to_s; end
@@ -407,7 +405,6 @@ class WebMock::StubRegistry
   def reset!; end
   def response_for_request(request_signature); end
   def self.allocate; end
-  def self.instance; end
   def self.new(*arg0); end
   extend Singleton::SingletonClassMethods
   include Singleton
@@ -437,7 +434,6 @@ class WebMock::HttpLibAdapterRegistry
   def initialize; end
   def register(lib, adapter); end
   def self.allocate; end
-  def self.instance; end
   def self.new(*arg0); end
   extend Singleton::SingletonClassMethods
   include Singleton

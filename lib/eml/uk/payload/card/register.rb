@@ -1,4 +1,4 @@
-# typed: true
+# typed: strict
 # frozen_string_literal: true
 
 module EML
@@ -8,8 +8,26 @@ module EML
         class Register < ::EML::UK::Payload
           include ISO
 
-          REQUIRED_VALUES =
-            %i[first_name last_name address1 city country email].freeze
+          REQUIRED_VALUES = T.let(
+            %i[first_name last_name address1 city country email].freeze,
+            T::Array[Symbol]
+          )
+
+          # rubocop:disable Metrics/AbcSize
+          sig { params(payload: T::Hash[Symbol, T.untyped]).void }
+          def initialize(payload)
+            super
+
+            @first_name = T.let(nil, T.nilable(String))
+            @last_name = T.let(nil, T.nilable(String))
+            @address1 = T.let(nil, T.nilable(String))
+            @address2 = T.let(nil, T.nilable(String))
+            @city = T.let(nil, T.nilable(String))
+            @dob = T.let(nil, T.nilable(T.any(Date, String, Time)))
+            @email = T.let(nil, T.nilable(String))
+            @phone = T.let(nil, T.nilable(String))
+          end
+          # rubocop:enable Metrics/AbcSize
 
           private
 
@@ -62,7 +80,7 @@ module EML
             @phone = phone
           end
 
-          sig { params(postal_code: String).returns(String) }
+          sig { returns(T.nilable(String)) }
           attr_accessor :postal_code
         end
       end

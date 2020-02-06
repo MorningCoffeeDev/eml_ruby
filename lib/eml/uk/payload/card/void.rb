@@ -1,4 +1,4 @@
-# typed: true
+# typed: strict
 # frozen_string_literal: true
 
 module EML
@@ -6,15 +6,15 @@ module EML
     class Payload
       module Card
         class Void < ::EML::UK::Payload
-          REQUIRED_CONFIG = %i[merchant_group].freeze
-          REQUIRED_VALUES = %i[note].freeze
+          REQUIRED_CONFIG = T.let(%i[merchant_group].freeze, T::Array[Symbol])
+          REQUIRED_VALUES = T.let(%i[note].freeze, T::Array[Symbol])
 
           private
 
-          sig { params(merchant_group: String).returns(String) }
+          sig { returns(T.nilable(String)) }
           attr_accessor :merchant_group
 
-          sig { params(note: String).returns(String) }
+          sig { returns(T.nilable(String)) }
           attr_accessor :note
         end
       end

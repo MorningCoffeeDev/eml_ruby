@@ -1,4 +1,4 @@
-# typed: true
+# typed: strict
 # frozen_string_literal: true
 
 module EML
@@ -6,12 +6,12 @@ module EML
     class Parameters
       module Card
         class Lock < ::EML::UK::Parameters
-          REQUIRED_CONFIG = %i[program].freeze
-          OPTIONAL_CONFIG = %i[search_parameter].freeze
+          REQUIRED_CONFIG = T.let(%i[program].freeze, T::Array[Symbol])
+          OPTIONAL_CONFIG = T.let(%i[search_parameter].freeze, T::Array[Symbol])
 
           private
 
-          sig { params(program: String).returns(String) }
+          sig { returns(T.nilable(String)) }
           attr_accessor :program
 
           sig { params(search_parameter: String).returns(String) }

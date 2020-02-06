@@ -62,7 +62,7 @@ module EML
     sig { returns(T::Hash[Symbol, T.untyped]) }
     def to_h
       instance_variables.each_with_object({}) do |variable_name, params|
-        key = variable_name.to_s[1..-1].to_sym
+        key = T.must(variable_name.to_s[1..-1]).to_sym
         params[key] = instance_variable_get(variable_name)
         params[key] = params[key].to_h if params[key].respond_to?(:to_h)
       end

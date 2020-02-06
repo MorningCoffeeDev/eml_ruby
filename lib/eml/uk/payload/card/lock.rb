@@ -1,4 +1,4 @@
-# typed: true
+# typed: strict
 # frozen_string_literal: true
 
 module EML
@@ -6,21 +6,28 @@ module EML
     class Payload
       module Card
         class Lock < ::EML::UK::Payload
-          REQUIRED_CONFIG = %i[merchant_group].freeze
-          REQUIRED_VALUES = %i[note reason].freeze
+          REQUIRED_CONFIG = T.let(%i[merchant_group].freeze, T::Array[Symbol])
+          REQUIRED_VALUES = T.let(%i[note reason].freeze, T::Array[Symbol])
+
+          sig { params(payload: T::Hash[Symbol, T.untyped]).void }
+          def initialize(payload)
+            super
+
+            @reason = T.let(nil, T.nilable(Symbol))
+          end
 
           private
 
-          sig { params(merchant_group: String).returns(String) }
+          sig { returns(T.nilable(String)) }
           attr_accessor :merchant_group
 
-          sig { params(note: String).returns(String) }
+          sig { returns(T.nilable(String)) }
           attr_accessor :note
 
-          REASONS = %i[
+          REASONS = T.let(%i[
             Damaged DataBreach Lost Miscellaneous OfficeError
             PastAccountExpirationDate Stolen UnclaimedProperty
-          ].freeze
+          ].freeze, T::Array[Symbol])
 
           sig { params(reason: Symbol).void }
           def reason=(reason)

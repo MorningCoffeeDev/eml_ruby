@@ -7,7 +7,7 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/http/all/http.rbi
 #
-# http-4.0.5
+# http-4.2.0
 module HTTP
   def self.[](headers); end
   extend HTTP::Chainable
@@ -278,8 +278,9 @@ class HTTP::Request
   def include_proxy_headers; end
   def initialize(opts); end
   def inspect; end
-  def normalize_uri(uri); end
   def port; end
+  def prepare_body(body); end
+  def prepare_headers(headers); end
   def proxy; end
   def proxy_authorization_header; end
   def proxy_connect_header; end
@@ -290,6 +291,7 @@ class HTTP::Request
   def socket_port; end
   def stream(socket); end
   def uri; end
+  def uri_normalizer; end
   def using_authenticated_proxy?; end
   def using_proxy?; end
   def verb; end
@@ -363,6 +365,10 @@ class HTTP::Features::Instrumentation::NullInstrumenter
   def instrument(name, payload = nil); end
   def start(_name, _payload); end
 end
+class HTTP::Features::NormalizeUri < HTTP::Feature
+  def initialize(normalizer: nil); end
+  def normalizer; end
+end
 class HTTP::Feature
   def initialize(opts = nil); end
   def wrap_request(request); end
@@ -402,9 +408,11 @@ class HTTP::Response::Parser
   def headers?; end
   def http_version; end
   def initialize; end
-  def on_body(chunk); end
-  def on_headers_complete(headers); end
-  def on_message_complete; end
+  def on_body(_response, chunk); end
+  def on_header_field(_response, field); end
+  def on_header_value(_response, value); end
+  def on_headers_complete(_reposse); end
+  def on_message_complete(_response); end
   def read(size); end
   def reset; end
   def status_code; end
@@ -501,7 +509,6 @@ class HTTP::MimeType::Adapter
   def self.allocate; end
   def self.decode(*args, &block); end
   def self.encode(*args, &block); end
-  def self.instance; end
   def self.new(*arg0); end
   extend Singleton::SingletonClassMethods
   include Singleton
@@ -509,7 +516,6 @@ end
 class HTTP::MimeType::JSON < HTTP::MimeType::Adapter
   def decode(str); end
   def encode(obj); end
-  def self.instance; end
 end
 class HTTP::Response::Status < Delegator
   def __getobj__; end
