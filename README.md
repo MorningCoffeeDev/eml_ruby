@@ -1,5 +1,7 @@
 # EML API integration library for Ruby
 
+**This gem is no longer supported**
+
 The EML API integration library provides convenient access to EML's REST Web
 Services and Transaction Notification Service for applications written in
 the Ruby language.
